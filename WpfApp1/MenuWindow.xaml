@@ -1,0 +1,166 @@
+﻿<Window x:Class="WpfApp1.MenuWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Морской вкус  — Меню"
+        Height="750" Width="1100"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#0D2A4A" Offset="0"/>
+            <GradientStop Color="#1565C0" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" Background="#1565C0">
+            <Grid>
+                <TextBlock Name="RolText" Text="Роль сотрудника" FontSize="15" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Button Content="Выйти" Click="Logout_Click" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0" Padding="14,6" FontSize="13" Foreground="White" Background="#0D47A1" BorderThickness="0" Cursor="Hand"/>
+            </Grid>
+        </Border>
+        <Border Grid.Row="1" Background="Transparent">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Button Content="МЕНЮ" Click="GoMenu_Click" Margin="4,0" Padding="24,12" FontSize="14" FontWeight="SemiBold" Foreground="White" Background="#1565C0" BorderThickness="0" Cursor="Hand"/>
+                <Button Content="БРОНИРОВАНИЕ" Click="GoBron_Click" Margin="4,0" Padding="24,12" FontSize="14" FontWeight="SemiBold" Foreground="White" Background="#0D47A1" BorderThickness="0" Cursor="Hand"/>
+                <Button Content="ЗАКАЗЫ" Click="GoZakaz_Click" Margin="4,0" Padding="24,12" FontSize="14" FontWeight="SemiBold" Foreground="White" Background="#0D47A1" BorderThickness="0" Cursor="Hand"/>
+            </StackPanel>
+        </Border>
+
+        <Grid Name="PageMenu" Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,10,0,10">
+                <Button Content="Все" Click="Button_Click" Tag="0" Margin="6,0" Padding="18,10" FontSize="14" Background="#BBDEFB" BorderThickness="0" Cursor="Hand"/>
+                <Button Content="Напитки" Click="Button_Click" Tag="1" Margin="6,0" Padding="18,10" FontSize="14" Background="#BBDEFB" BorderThickness="0" Cursor="Hand"/>
+                <Button Content="Горячее" Click="Button_Click" Tag="2" Margin="6,0" Padding="18,10" FontSize="14" Background="#BBDEFB" BorderThickness="0" Cursor="Hand"/>
+                <Button Content="Салаты" Click="Button_Click" Tag="3" Margin="6,0" Padding="18,10" FontSize="14" Background="#BBDEFB" BorderThickness="0" Cursor="Hand"/>
+                <Button Content="Закуски" Click="Button_Click" Tag="4" Margin="6,0" Padding="18,10" FontSize="14" Background="#BBDEFB" BorderThickness="0" Cursor="Hand"/>
+                <Button Content="Десерты" Click="Button_Click" Tag="5" Margin="6,0" Padding="18,10" FontSize="14" Background="#BBDEFB" BorderThickness="0" Cursor="Hand"/>
+                <Button x:Name="BtnEdit" Content="Изменить" Click="BtnEdit_Click" Margin="20,0,0,0" Padding="20,10" FontSize="14" Background="#F8BBD0" BorderThickness="0" Cursor="Hand"/>
+            </StackPanel>
+            <Border x:Name="Form" Grid.Row="1" Background="#123C6B" CornerRadius="10" Padding="20" Margin="20,0,20,10" Visibility="Collapsed">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Grid.Column="0" Margin="0,0,10,10">
+                        <TextBlock Text="Название" Foreground="White" Margin="0,0,0,4"/>
+                        <TextBox x:Name="NewName" Height="30" FontSize="14" VerticalContentAlignment="Center"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="0" Grid.Column="1" Margin="10,0,0,10">
+                        <TextBlock Text="Описание" Foreground="White" Margin="0,0,0,4"/>
+                        <TextBox x:Name="NewOpisanie" Height="30" FontSize="14" VerticalContentAlignment="Center"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,0,10,10">
+                        <TextBlock Text="Цена" Foreground="White" Margin="0,0,0,4"/>
+                        <TextBox x:Name="NewPrice" Height="30" FontSize="14" VerticalContentAlignment="Center"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="1" Grid.Column="1" Margin="10,0,0,10">
+                        <TextBlock Text="Вес / объём" Foreground="White" Margin="0,0,0,4"/>
+                        <TextBox x:Name="NewVes" Height="30" FontSize="14" VerticalContentAlignment="Center"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="2" Grid.Column="0" Margin="0,0,10,10">
+                        <TextBlock Text="Категория" Foreground="White" Margin="0,0,0,4"/>
+                        <ComboBox x:Name="NewCat" Height="30" FontSize="14"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="2" Grid.Column="1" Margin="10,0,0,10">
+                        <TextBlock Text="Картинка" Foreground="White" Margin="0,0,0,4"/>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Content="Выбрать файл" Click="PickFoto_Click" Width="130" Height="30" Foreground="White" Background="#1565C0" BorderThickness="0" Cursor="Hand"/>
+                            <TextBlock Name="FotoLabel" Foreground="#BBDEFB" FontSize="12" VerticalAlignment="Center" Margin="10,0,0,0" Text="не выбрана"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,6,0,0">
+                        <Button Content="Сохранить" Click="SaveNew_Click" Width="130" Height="36" Foreground="White" Background="#1565C0" BorderThickness="0" Cursor="Hand" Margin="0,0,10,0"/>
+                        <Button Content="Отмена" Click="CancelNew_Click" Width="100" Height="36" Background="#BBDEFB" BorderThickness="0" Cursor="Hand"/>
+                    </StackPanel>
+
+                    <TextBlock x:Name="FormError" Grid.Row="3" Grid.Column="0" Foreground="#FF8A80" FontSize="13" VerticalAlignment="Center"/>
+                </Grid>
+            </Border>
+
+            <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto" Padding="20,0,20,20">
+                <ItemsControl Name="BlyudaGrid">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Width="220" Height="300" Background="#FFE0B2" BorderBrush="#E0A96D" BorderThickness="2" CornerRadius="6" Margin="10" Tag="{Binding Id}" MouseLeftButtonDown="Blyudo_DoubleClick">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="120"/>
+                                        <RowDefinition Height="30"/>
+                                        <RowDefinition Height="30"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+               <Border Grid.Row="0" Background="#FFCC80" CornerRadius="4,4,0,0" Margin="6">
+                       <Grid>
+                               <TextBlock Text="фото" Foreground="#8D6E63" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Image Source="{Binding Foto}" Stretch="UniformToFill" ClipToBounds="True"/>
+                      </Grid>
+                 </Border>
+
+        <Button Grid.Row="0" Content="X" Width="20" Height="20" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0" FontSize="11" Foreground="#B08968" Cursor="Hand" Padding="0" Visibility="{Binding CanEdit, Converter={StaticResource BoolToVis}}" Click="DeleteBlyudo_Click" Tag="{Binding Id}">
+                                        <Button.Template>
+                                            <ControlTemplate TargetType="Button">
+                                                <Border Background="Transparent" BorderThickness="0">
+                                                    <ContentPresenter Name="cp" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                                <ControlTemplate.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter TargetName="cp" Property="TextElement.Foreground" Value="#5D4037"/>
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                    </Button>
+
+                                    <TextBlock Grid.Row="1" Text="{Binding Name}" FontSize="15" FontWeight="Bold" Foreground="#4E342E" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Row="2" Text="{Binding PriceText}" FontSize="14" Foreground="#BF360C" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                    <StackPanel Grid.Row="3" Margin="6,4,6,0">
+                                        <TextBlock Text="{Binding Ves}" FontSize="12" Foreground="#6D4C41" HorizontalAlignment="Center"/>
+                                        <TextBlock Text="{Binding Opisanie}" FontSize="11" Foreground="#8D6E63" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap" Margin="0,4,0,0"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</Window>
